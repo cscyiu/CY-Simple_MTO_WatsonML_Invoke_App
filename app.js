@@ -29,12 +29,7 @@ app.get('/',function(req, res) {
 });
 
 app.post('/submit-watsonml-data', function (req, res) {
-    var watsonMLParams = 
-    req.body.maximumSpeed + ' ' + 
-    req.body.avgSpeed + ' ' + 
-    req.body.isSeatBeltOff + ' ' + 
-    req.body.distance + ' ' + 
-    req.body.isSeatBeltOffs;
+    var watsonMLParams = req.body.maximumSpeed + ' ' + req.body.avgSpeed + ' ' + req.body.isSeatBeltOff + ' ' + req.body.distance + ' ' + req.body.isSeatBeltOffs;
     
     res.send(watsonMLParams + ' Submitted Successfully!');
 });
