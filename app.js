@@ -8,6 +8,7 @@
 // for more info, see: http://expressjs.com
 var express = require('express');
 var bodyParser = require ('body-parser');
+var request = require('request');
 
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -25,6 +26,17 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/',function(req, res) {
   res.sendfile("index.html");
+});
+
+app.post('/submit-watsonml-data', function (req, res) {
+    var watsonMLParams = 
+    req.body.maximumSpeed + ' ' + 
+    req.body.avgSpeed + ' ' + 
+    req.body.isSeatBeltOff + ' ' + 
+    req.body.distance + ' ' + 
+    req.body.isSeatBeltOffs;
+    
+    res.send(watsonMLParams + ' Submitted Successfully!');
 });
 
 // get the app environment from Cloud Foundry
