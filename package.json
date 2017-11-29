@@ -9,6 +9,7 @@
 		"express": "4.13.x",
 		"body-parser": "1.13.x",
 		"request": "2.83.x",
+		"request-promise": "4.2.x",
 		"cfenv": "1.0.x"
 	},
 	"repository": {},
