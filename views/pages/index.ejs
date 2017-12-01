@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2>Welcome to the Ministry of Transportation Trip Planner Application</h2>
+    </div>
+    
+    <p>Please enter the approximate distance you are looking to drive in your upcoming trip</p>
+    <form action="/submit-watsonml-data" method="post">
+ 		<div class="form-group">
+    		<label for="distance">Distance:</label>
+    		<input type="text" class="form-control" id="distance" name="distance">
+		</div>
+
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
