@@ -1,0 +1,17 @@
+<%
+getWatsonMLResponseStringArray = function(input) {
+    var tempString = input.toString();
+    var watsonMLResponseStringArray = tempString.split(",");
+    return watsonMLResponseStringArray;
+}
+
+getWatsonMLResponseJSONObject = function(input) {
+	var tempString = input.toString();
+    return JSON.parse(tempString);
+}
+
+getWatsonMLResponsePredictionCount = function(input) {
+	var tempString = input.toString();
+    return JSON.parse(tempString).values.length;
+}
+%>

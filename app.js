@@ -79,7 +79,7 @@ app.get('/about', function(req, res) {
 // WatsonMLResponse page
 app.get('/WatsonMLResponse', function(req, res) {
 	//var WMLFinalResponse = ''+app.get('WatsonMLResponse');
-    res.render('pages/predictionResponse', {WMLFinalResponse:app.get('WatsonMLResponse')});
+    res.render('pages/predictionResponse', {'WMLFinalResponse':app.get('WatsonMLResponse')});
 });
 
 app.post('/submit-watsonml-data', function (req, res) {
@@ -143,7 +143,8 @@ app.post('/submit-watsonml-data', function (req, res) {
 		        console.log("Watson ML Endpoint Invoked and Scoring Response is : "+body2);
 		        
 		        //Set the response in the app so that the redirect can use it to render
-		        app.set('WatsonMLResponse',JSON.stringify(body2));
+		        //app.set('WatsonMLResponse',JSON.stringify(body2));
+		        app.set('WatsonMLResponse',body2);
 		        res.redirect("/WatsonMLResponse");
 		        
 		        //Debugging line to see the raw output of the ML Endpoint

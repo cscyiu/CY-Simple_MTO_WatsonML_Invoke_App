@@ -10,11 +10,49 @@
 </header>
 
 <main>
-    <div class="jumbotron">
+<div class="container">
+	<div class="jumbotron">
         <h2>Welcome to the Ministry of Transportation Trip Planner Application</h2>
     </div>
+      
+    <% include ../utilities/parseWatsonMLResponse %>
 
-    <p> <%= WMLFinalResponse %></p>
+	<!-- DEBUG
+    <p> Actual Raw Response: <%= WMLFinalResponse %> </p>
+    <p> Field Headers: <%= JSON.parse(WMLFinalResponse).fields %> </p>
+    <p> Total Number of Prediction Values: <%= JSON.parse(WMLFinalResponse).values.length %> </p>
+    <p> Actual Prediction Results Values: <%= JSON.parse(WMLFinalResponse).values[0].length %> </p>
+    
+    <p> Field Header Array Length: <%= getWatsonMLResponseStringArray(JSON.parse(WMLFinalResponse).fields).length %> </p>
+  	<p> Field Values Array Length: <%= getWatsonMLResponseStringArray(JSON.parse(WMLFinalResponse).values).length %> </p>
+  	<p> Model: <%= getWatsonMLResponseStringArray(JSON.parse(WMLFinalResponse).values)[0] %> </p>
+  	-->
+  	
+    <p> The following vehicles are available, please note their predicted overall costs for the trip! </p>
+    
+	<table class="table table-hover">
+	    <thead>
+	      	<tr>
+	        	<th>Model</th>
+	        	<th>Asset Type</th>	
+	        	<th>Estimated Distance of Trip</th>
+	        	<th>Predicted Overall Costs</th>	
+	      </tr>
+	    </thead>
+	    <tbody>
+	    
+			<% for(var i = 0; i < getWatsonMLResponsePredictionCount(WMLFinalResponse); i++) { %>	    
+	      	<tr>
+		        <td><%= getWatsonMLResponseStringArray(JSON.parse(WMLFinalResponse).values[i])[0] %></td>
+		        <td><%= getWatsonMLResponseStringArray(JSON.parse(WMLFinalResponse).values[i])[1] %></td>
+		        <td><%= getWatsonMLResponseStringArray(JSON.parse(WMLFinalResponse).values[i])[2] %> km</td>
+		        <th> $<%= getWatsonMLResponseStringArray(JSON.parse(WMLFinalResponse).values[i])[8] %></th>
+	      	</tr>
+	      	<% } %>
+	      	
+	    </tbody>
+	</table>
+</div>
 
 </main>
 
